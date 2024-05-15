@@ -1,373 +1,259 @@
-# Binarytree: Python Library for Studying Binary Trees
+# C - Binary trees
 
-![Build](https://github.com/joowani/binarytree/workflows/Build/badge.svg)
-![CodeQL](https://github.com/joowani/binarytree/workflows/CodeQL/badge.svg)
-[![codecov](https://codecov.io/gh/joowani/binarytree/branch/main/graph/badge.svg?token=C2X2OMPL65)](https://codecov.io/gh/joowani/binarytree)
-[![PyPI version](https://badge.fury.io/py/binarytree.svg)](https://badge.fury.io/py/binarytree)
-[![GitHub license](https://img.shields.io/github/license/joowani/binarytree?color=brightgreen)](https://github.com/joowani/binarytree/blob/main/LICENSE)
-![Python version](https://img.shields.io/badge/python-3.7%2B-blue)
+This was a partner project in which we learned about the details, advantages,
+and disadvantages of using trees as data structures. We learned about how to
+qualify trees as well as how to traverse them. Throughout the project, we
+implemented binary, binary search, AVL, and Max Binary Heap trees.
 
-Are you studying binary trees for your next exam, assignment or technical interview?
+## Tests :heavy_check_mark:
 
-**Binarytree** is a Python library which lets you generate, visualize, inspect and
-manipulate [binary trees](https://en.wikipedia.org/wiki/Binary_tree). Skip the tedious
-work of setting up test data, and dive straight into practising your algorithms.
-[Heaps](https://en.wikipedia.org/wiki/Heap_(data_structure)) and
-[binary search trees](https://en.wikipedia.org/wiki/Binary_search_tree) are also supported.
-Self-balancing search trees like [red-black](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
-or [AVL](https://en.wikipedia.org/wiki/AVL_tree) will be added in the future.
+* [Tester](./Main_tester): Folder of test files for all tasks. Provided by ALX.
 
-Check out the [documentation](http://binarytree.readthedocs.io) for more details.
+## Helper File :raised_hands:
 
-![IPython Demo](gifs/demo.gif)
 
-Binarytree can be used with [Graphviz](https://graphviz.org) and
-[Jupyter Notebooks](https://jupyter.org) as well:
 
-![Jupyter Demo](gifs/jupyter.gif)
+## Header File :file_folder:
 
-## Requirements
+* [binary_trees.h](./binary_trees.h): Header file containing definitions and
+prototypes for all types and functions written for the project.
 
-Python 3.7+
+Data Structures
+```
+struct binary_tree_s
+{
+    int n;
+    struct binary_tree_s *parent;
+    struct binary_tree_s *left;
+    struct binary_tree_s *right;
+};
 
-## Installation
-
-Install via [pip](https://pip.pypa.io):
-
-```shell
-pip install binarytree --upgrade
+typedef struct binary_tree_s binary_tree_t;
+typedef struct binary_tree_s bst_t;
+typedef struct binary_tree_s avl_t;
+typedef struct binary_tree_s heap_t;
 ```
 
-For [conda](https://docs.conda.io) users:
+Function Prototypes
 
-```shell
-conda install binarytree -c conda-forge
-```
+| File                             | Prototype                                                                                        |
+| -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `binary_tree_print.c`            | `void binary_tree_print(const binary_tree_t *tree)`                                              |
+| `0-binary_tree_node.c`           | `binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);`                             |
+| `1-binary_tree_insert_left.c`    | `binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);`                      |
+| `2-binary_tree_insert_right.c`   | `binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);`                     |
+| `3-binary_tree_delete.c`         | `void binary_tree_delete(binary_tree_t *tree);`                                                  |
+| `4-binary_tree_is_leaf.c`        | `int binary_tree_is_leaf(const binary_tree_t *node);`                                            |
+| `5-binary_tree_is_root.c`        | `int binary_tree_is_root(const binary_tree_t *node);`
+| `6-binary_tree_preorder.c`       | `void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int));`                       |
+| `7-binary_tree_inorder.c`        | `void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int));`                        |
+| `8-binary_tree_postorder.c`      | `void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int));`                      |
+| `9-binary_tree_height.c`         | `size_t binary_tree_height(const binary_tree_t *tree);`                                          |
+| `10-binary_tree_depth.c`         | `size_t binary_tree_depth(const binary_tree_t *tree);`                                           |
+| `11-binary_tree_size.c`          | `size_t binary_tree_size(const binary_tree_t *tree);`                                            |
+| `12-binary_tree_leaves.c`        | `size_t binary_tree_leaves(const binary_tree_t *tree);`                                          |
+| `13-binary_tree_nodes.c`         | `size_t binary_tree_nodes(const binary_tree_t *tree);`                                           |
+| `14-binary_tree_balance.c`       | `int binary_tree_balance(const binary_tree_t *tree);`                                            |
+| `15-binary_tree_is_full.c`       | `int binary_tree_is_full(const binary_tree_t *tree);`                                            |
+| `16-binary_tree_is_perfect.c`    | `int binary_tree_is_perfect(const binary_tree_t *tree);`                                         |
+| `17-binary_tree_sibling.c`       | `binary_tree_t *binary_tree_sibling(binary_tree_t *node);`                                       |
+| `18-binary_tree_uncle.c`         | `binary_tree_t *binary_tree_uncle(binary_tree_t *node);`                                         |
+| `100-binary_trees_ancestor.c`    | `binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);` |
+| `101-binary_tree_levelorder.c`   | `void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));`                     |
+| `102-binary_tree_is_complete.c`  | `int binary_tree_is_complete(const binary_tree_t *tree);`                                        |
+| `103-binary_tree_rotate_left.c`  | `binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);`                                   |
+| `104-binary_tree_rotate_right.c` | `binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);`                                  |
+| `110-binary_tree_is_bst.c`       | `int binary_tree_is_bst(const binary_tree_t *tree);`                                             |
+| `111-bst_insert.c`               | `bst_t *bst_insert(bst_t **tree, int value);`                                                    |
+| `112-array_to_bst.c`             | `bst_t *array_to_bst(int *array, size_t size);`                                                  |
+| `113-bst_search.c`               | `bst_t *bst_search(const bst_t *tree, int value);`                                               |
+| `114-bst_remove.c`               | `bst_t *bst_remove(bst_t *root, int value);`                                                     |
+| `120-binary_tree_is_avl.c`       | `int binary_tree_is_avl(const binary_tree_t *tree);`                                             |
+| `121-avl_insert.c`               | `avl_t *avl_insert(avl_t **tree, int value);`                                                    |
+| `122-array_to_avl.c`             | `avl_t *array_to_avl(int *array, size_t size);`                                                  |
 
-## Getting Started
+## Tasks :page_with_curl:
 
-Binarytree uses the following class to represent a node:
+* **0. New node**
+  * [0-binary_tree_node.c](./0-binary_tree_node.c): C function that creates a
+  binary tree node with a given parent and value.
+  * Returns a pointer to the new node, or `NULL` on failure.
 
-```python
-class Node:
+* **1. Insert left**
+  * [1-binary_tree_insert](./1-binary_tree_insert): C function that inserts a
+  node as the left-child of another.
+  * Returns a pointer to the new node, or `NULL` on failure.
+  * If the given `parent` already contains a left node, the new node takes its
+  place and the old left-child becomes the left-child of the new node.
 
-    def __init__(self, value, left=None, right=None):
-        self.value = value  # The node value (float/int/str)
-        self.left = left    # Left child
-        self.right = right  # Right child
-```
+* **2. Insert right**
+  * [2-binary_tree_insert_right.c](./2-binary_tree_insert_right.c): C function that
+  inserts a node as the right-child of another.
+  * Returns a pointer to the new node, or `NULL` on failure.
+  * If the given `parent` already contains a right node, the new node takes its
+  place and the old right-child becomes the right-child of the new node.
 
-Generate and pretty-print various types of binary trees:
+* **3. Delete**
+  * [3-binary_tree_delete.c](./3-binary_tree_delete.c): C function that deletes
+  an entire binary tree.
 
-```python
-from binarytree import tree, bst, heap
+* **4. Is leaf**
+  * [4-binary_tree_is_leaf.c](./4-binary_tree_is_leaf.c): C function that checks
+  if a given node is a leaf.
+  * Returns `1` if the node is a leaf, `0` otherwise.
 
-# Generate a random binary tree and return its root node.
-my_tree = tree(height=3, is_perfect=False)
+* **5. Is root**
+  * [5-binary_tree_is_root.c](./5-binary_tree_is_root.c): C function that checks
+  if a given node is a root.
+  * Returns `1` if the node is a root, `0` otherwise.
 
-# Generate a random BST and return its root node.
-my_bst = bst(height=3, is_perfect=True)
+* **6. Pre-order traversal**
+  * [6-binary_tree_preorder.c](./6-binary_tree_preorder.c): C function that
+  traverses a tree using pre-order traversal.
 
-# Generate a random max heap and return its root node.
-my_heap = heap(height=3, is_max=True, is_perfect=False)
+* **7. In-order traversal**
+  * [7-binary_tree_inorder.c](./7-binary_tree_inorder.c): C function that
+  traverses a tree using in-order traversal.
 
-# Pretty-print the trees in stdout.
-print(my_tree)
-#
-#        _______1_____
-#       /             \
-#      4__          ___3
-#     /   \        /    \
-#    0     9      13     14
-#         / \       \
-#        7   10      2
-#
-print(my_bst)
-#
-#            ______7_______
-#           /              \
-#        __3__           ___11___
-#       /     \         /        \
-#      1       5       9         _13
-#     / \     / \     / \       /   \
-#    0   2   4   6   8   10    12    14
-#
-print(my_heap)
-#
-#              _____14__
-#             /         \
-#        ____13__        9
-#       /        \      / \
-#      12         7    3   8
-#     /  \       /
-#    0    10    6
-#
-```
-Generate trees with letter values instead of numbers:
+* **8. Post-order traversal**
+  * [8-binary_tree_postorder.c](./8-binary_tree_postorder.c): C function that
+  traverses a tree using post-order traversal.
 
-```python
-from binarytree import tree
+* **9. Height**
+  * [9-binary_tree_height.c](./9-binary_tree_height.c): C function that returns
+  the height of a binary tree.
 
-my_tree = tree(height=3, is_perfect=False, letters=True)
+* **10. Depth**
+  * [10-binary_tree_depth.c](./10-binary_tree_depth.c): C function that returns
+  the depth of a given node in a binary tree.
 
-print(my_tree)
-#
-#          ____H____
-#         /         \
-#      __E__         F__
-#     /     \       /   \
-#    M       G     J     B
-#     \     /     /     / \
-#      O   L     D     I   A
-#
-```
+* **11. Size**
+  * [11-binary_tree_size.c](./11-binary_tree_size.c): C function that returns
+  the size of a binary tree.
 
+* **12. Leaves**
+  * [12-binary_tree_leaves.c](./12-binary_tree_leaves.c): C function that returns
+  the number of leaves in a binary tree.
 
-Build your own trees:
+* **13. Nodes**
+  * [13-binary_tree_nodes.c](./13-binary_tree_nodes.c): C function that returns
+  the number of nodes in a binary tree with at least one child.
 
-```python
-from binarytree import Node
+* **14. Balance factor**
+  * [14-binary_tree_balance.c](./14-binary_tree_balance.c): C function that
+  returns the balance factor of a binary tree.
 
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.right = Node(4)
+* **15. Is full**
+  * [15-binary_tree_is_full.c](./15-binary_tree_is_full.c): C function that
+  checks if a binary tree is full.
+  * Returns `1` if a tree is full, `0` otherwise.
 
-print(root)
-#
-#      __1
-#     /   \
-#    2     3
-#     \
-#      4
-#
-```
+* **16. Is perfect**
+  * [16-binary_tree_is_perfect.c](./16-binary_tree_is_perfect.c): C function
+  that checks if a binary tree is perfect.
+  * Returns `1` if a tree is perfect, `0` otherwise.
 
-Inspect tree properties:
+* **17. Sibling**
+  * [17-binary_tree_sibling.c](./17-binary_tree_sibling.c): C function that
+  returns a pointer to the sibling of a given node in a binary tree.
+  * Returns `NULL` if no sibling is found.
 
-```python
-from binarytree import Node
+* **18. Uncle**
+  * [18-binary_tree_uncle.c](./18-binary_tree_uncle.c): C function that
+  returns a pointer to the uncle of a given node in a binary tree.
+  * Returns `NULL` if no uncle is found.
 
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
+* **19. Lowest common ancestor**
+  * [100-binary_trees_ancestor.c](./100-binary_trees_ancestor.c): C function
+  that returns a pointer to the lowest common ancestor node of two given nodes
+  in a binary tree.
+  * Returns `NULL` if no common ancestor is found.
 
-print(root)
-#
-#        __1
-#       /   \
-#      2     3
-#     / \
-#    4   5
-#
-assert root.height == 2
-assert root.is_balanced is True
-assert root.is_bst is False
-assert root.is_complete is True
-assert root.is_max_heap is False
-assert root.is_min_heap is True
-assert root.is_perfect is False
-assert root.is_strict is True
-assert root.leaf_count == 3
-assert root.max_leaf_depth == 2
-assert root.max_node_value == 5
-assert root.min_leaf_depth == 1
-assert root.min_node_value == 1
-assert root.size == 5
+* **20. Level-order traversal**
+  * [101-binary_tree_levelorder.c](./101-binary_tree_levelorder.c): C function
+  that traverses a binary tree using level-order traversal.
 
-# See all properties at once.
-assert root.properties == {
-    'height': 2,
-    'is_balanced': True,
-    'is_bst': False,
-    'is_complete': True,
-    'is_max_heap': False,
-    'is_min_heap': True,
-    'is_perfect': False,
-    'is_strict': True,
-    'leaf_count': 3,
-    'max_leaf_depth': 2,
-    'max_node_value': 5,
-    'min_leaf_depth': 1,
-    'min_node_value': 1,
-    'size': 5
-}
+* **21. Is complete**
+  * [102-binary_tree_is_complete.c](./102-binary_tree_is_complete.c): C function
+  that checks if a binary tree is complete.
+  * Returns `1` if the tree is complete, `0` otherwise.
 
-print(root.leaves)
-# [Node(3), Node(4), Node(5)]
+* **22. Rotate left**
+  * [103-binary_tree_rotate_left.c](./103-binary_tree_rotate_left.c): C function
+  that performs a left-rotation on a binary tree.
+  * Returns a pointer to the new root node of the tree after rotation.
 
-print(root.levels)
-# [[Node(1)], [Node(2), Node(3)], [Node(4), Node(5)]]
-```
+* **23. Rotate right**
+  * [104-binary_tree_rotate_right.c](./104-binary_tree_rotate_right.c): C function
+  that performs a right-rotation on a binary tree.
+  * Returns a pointer to the new root node of the tree after rotation.
 
-Compare and clone trees:
-```python
-from binarytree import tree
+* **24. Is BST**
+  * [110-binary_tree_is_bst.c](./110-binary_tree_is_bst.c): C function that
+  checks if a binary tree is a valid binary search tree.
+  * Returns `1` if the tree is a valid BST, `0` otherwise.
 
-original = tree()
+* **25. BST - Insert**
+  * [111-bst_insert.c](./111-bst_insert.c): C function that inserts a value into
+  a binary search tree.
+  * Returns a pointer to the new node, or `NULL` on failure.
+  * If the tree is `NULL`, the value becomes the root node.
+  * The value is ignored if it is already present in the tree.
 
-# Clone the binary tree.
-clone = original.clone()
+* **26. BST - Array to BST**
+  * [112-array_to_bst.c](./112-array_to_bst.c): C function that builds a binary
+  search tree from an array.
+  * Returns a pointer to the root node of the created tree, or `NULL` on failure.
 
-# Check if the trees are equal.
-original.equals(clone)
-```
+* **27. BST - Search**
+  * [113-bst_search.c](./113-bst_search.c): C function that searches for a value
+  in a binary search tree.
+  * If the value is matched in the BST, returns a pointer to the matched node.
+  * Otherwise, returns `NULL`.
 
+* **28. BST - Remove**
+  * [114-bst_remove.c](./114-bst_remove.c): C function that removes a node from
+  a binary search tree.
+  * Returns a pointer to the new root node of the tree after deletion.
+  * If the node to be deleted has two children, it is replaced with its first
+  in-order successor.
 
-Use [level-order (breadth-first)](https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search) 
-indexes to manipulate nodes:
+* **29. Big O #BST**
+  * [115-O](./115-O): Text file containing the average time complexities of
+  binary search tree operations (one answer per line):
+    * Inserting the value `n`.
+    * Removing the node with the value `n`.
+    * Searching for a node in a BST of size `n`.
 
-```python
-from binarytree import Node
+* **30. Is AVL**
+  * [120-binary_tree_is_avl.c](./120-binary_tree_is_avl.c): C function that checks if
+  a binary tree is a valid AVL tree.
+  * If the tree is a valid AVL tree, returns `1`.
+  * Otherwise, returns `0`.
 
-root = Node(1)                  # index: 0, value: 1
-root.left = Node(2)             # index: 1, value: 2
-root.right = Node(3)            # index: 2, value: 3
-root.left.right = Node(4)       # index: 4, value: 4
-root.left.right.left = Node(5)  # index: 9, value: 5
+* **31. AVL - Insert**
+  * [121-avl_insert.c](./121-avl_insert.c): C function that inserts a value in an AVL tree.
+  * Returns a value to the inserted node, or `NULL` on failure.
 
-print(root)
-#
-#      ____1
-#     /     \
-#    2__     3
-#       \
-#        4
-#       /
-#      5
-#
-root.pprint(index=True)
-#
-#       _________0-1_
-#      /             \
-#    1-2_____        2-3
-#            \
-#           _4-4
-#          /
-#        9-5
-#
-print(root[9])
-# Node(5)
+* **32. AVL - Array to AVL**
+  * [122-array_to_avl.c](./122-array_to_avl.c): C function that builds an AVL tree
+  from an array.
+  * Returns a pointer to the root node of the created AVL tree, or `NULL` on failure.
+  * Ignores duplicate values.
 
-# Replace the node/subtree at index 4.
-root[4] = Node(6, left=Node(7), right=Node(8))
-root.pprint(index=True)
-#
-#       ______________0-1_
-#      /                  \
-#    1-2_____             2-3
-#            \
-#           _4-6_
-#          /     \
-#        9-7     10-8
-#
+* **35. Big O #AVL Tree**
+  * [125-O](./125-O): Text file containing the average time complexities of AVL tree
+  opeartions (one answer per line):
+    * Inserting the value `n`.
+    * Removing the node with the value `n`.
+    * Searching for a node in an AVL tree of size `n`.
 
-# Delete the node/subtree at index 1.
-del root[1]
-root.pprint(index=True)
-#
-#    0-1_
-#        \
-#        2-3
-```
+* **41. Big O #Binary Heap**
+  * [135-O](./135-O): Text file containing the average time complexities of
+  binary heap opeartions (one answer per line):
+    * Inserting the value `n`.
+    * Extracting the root node.
+    * Searching for a node in a binary heap of size `n`.
 
-Traverse trees using different algorithms:
-
-```python
-from binarytree import Node
-
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
-
-print(root)
-#
-#        __1
-#       /   \
-#      2     3
-#     / \
-#    4   5
-#
-print(root.inorder)
-# [Node(4), Node(2), Node(5), Node(1), Node(3)]
-
-print(root.preorder)
-# [Node(1), Node(2), Node(4), Node(5), Node(3)]
-
-print(root.postorder) 
-# [Node(4), Node(5), Node(2), Node(3), Node(1)]
-
-print(root.levelorder) 
-# [Node(1), Node(2), Node(3), Node(4), Node(5)]
-
-print(list(root)) # Equivalent to root.levelorder
-# [Node(1), Node(2), Node(3), Node(4), Node(5)]
-```
-
-Convert to [list representations](https://en.wikipedia.org/wiki/Binary_tree#Arrays):
-
-```python
-from binarytree import build
-
-# Build a tree from list representation
-values = [7, 3, 2, 6, 9, None, 1, 5, 8]
-root = build(values)
-print(root)
-#
-#            __7
-#           /   \
-#        __3     2
-#       /   \     \
-#      6     9     1
-#     / \
-#    5   8
-#
-
-# Go back to list representation
-print(root.values) 
-# [7, 3, 2, 6, 9, None, 1, 5, 8]
-```
-
-Binarytree supports another representation which is more compact but without
-the [indexing properties](https://en.wikipedia.org/wiki/Binary_tree#Arrays) 
-(this method is often used in [Leetcode](https://leetcode.com/)):
-
-```python
-from binarytree import build, build2, Node
-
-# First let's create an example tree.
-root = Node(1)
-root.left = Node(2)
-root.left.left = Node(3)
-root.left.left.left = Node(4)
-root.left.left.right = Node(5)
-print(root)
-#
-#           1
-#          /
-#       __2
-#      /
-#     3
-#    / \
-#   4   5
-
-# First representation is already shown above.
-# All "null" nodes in each level are present.
-print(root.values)
-# [1, 2, None, 3, None, None, None, 4, 5]
-
-# Second representation is more compact but without the indexing properties.
-print(root.values2)
-# [1, 2, None, 3, None, 4, 5]
-
-# Build trees from the list representations
-tree1 = build(root.values)
-tree2 = build2(root.values2)
-assert tree1.equals(tree2) is True
-```
-
-Check out the [documentation](http://binarytree.readthedocs.io) for more details.
+## Author
+* Yonas leykun
